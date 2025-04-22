@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  streamlit-app:
+    build: .
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app  # Mount the current directory to /app in the container
+      - students_data:/app/students.db  # Mount SQLite database to persist data
+    environment:
+      - PYTHONUNBUFFERED=1
+
+volumes:
+  students_data:  # Named volume for SQLite database
